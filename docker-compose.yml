@@ -58,7 +58,10 @@ gitlab:
     - IMAP_STARTTLS=false
 #    - OAUTH_GOOGLE_API_KEY=
 #    - OAUTH_GOOGLE_APP_SECRET=
+<<<<<<< HEAD
 #    - OAUTH_GOOGLE_RESTRICT_DOMAIN=
+=======
+>>>>>>> 93e1a39b13f8a1524d3f8b30f672428b2070ffd8
   volumes:
     - /srv/docker/gitlab/gitlab:/home/git/data
 redis:
