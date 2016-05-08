@@ -56,6 +56,8 @@ gitlab:
     - IMAP_PASS=password
     - IMAP_SSL=true
     - IMAP_STARTTLS=false
+#    - OAUTH_GOOGLE_API_KEY=
+#    - OAUTH_GOOGLE_APP_SECRET=
   volumes:
     - /srv/docker/gitlab/gitlab:/home/git/data
 redis:
