@@ -1,31 +1,30 @@
-postgresql:
+mysql:
   restart: always
-  image: sameersbn/postgresql:9.4-21
+  image: sameersbn/mysql:latest
   environment:
     - DB_USER=gitlab
     - DB_PASS=password
     - DB_NAME=gitlabhq_production
-    - DB_EXTENSION=pg_trgm
   volumes:
-    - /srv/docker/gitlab/postgresql:/var/lib/postgresql
+    - /srv/docker/gitlab/mysql:/var/lib/mysql
 gitlab:
   restart: always
   image: sameersbn/gitlab:8.7.2
   links:
     - redis:redisio
-    - postgresql:postgresql
+    - mysql:mysql
   ports:
-    - "10080:80"
+    - "10443:443"
     - "10022:22"
   environment:
     - DEBUG=false
-    - TZ=Asia/Kolkata
-    - GITLAB_TIMEZONE=Kolkata
+    - TZ=Asia/Jakarta
+    - GITLAB_TIMEZONE=Jakarta
 
     - GITLAB_SECRETS_DB_KEY_BASE=long-and-random-alphanumeric-string
 
     - GITLAB_HOST=localhost
-    - GITLAB_PORT=10080
+    - GITLAB_PORT=10443
     - GITLAB_SSH_PORT=10022
     - GITLAB_RELATIVE_URL_ROOT=
 
@@ -38,6 +37,8 @@ gitlab:
 
     - GITLAB_BACKUP_SCHEDULE=daily
     - GITLAB_BACKUP_TIME=01:00
+    - GITLAB_HTTPS=true
+    - SSL_SELF_SIGNED=true
 
     - SMTP_ENABLED=false
     - SMTP_DOMAIN=www.example.com
